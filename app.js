@@ -14,6 +14,7 @@ function listenforEvents(){
   addTaskBtn.addEventListener('click', addTaskValue);
   clearTasks.addEventListener('click', clearAllTaskAtOnce);
   unorderedList.addEventListener('click', removeTask);
+  filterInput.addEventListener('keyup', filterTasks);
 }
 
 function addTaskValue(e){
@@ -68,5 +69,21 @@ function removeTask(e){
     e.target.parentElement.parentElement.remove();
     // console.log(e.target.parentElement.parentElement);
   } 
-  
+}
+
+function filterTasks(e){
+  const text = e.target.value.toLowerCase();
+
+  document.querySelectorAll('.collection-item').forEach
+  (function(task){
+    const item = task.firstChild.textContent;
+    // if the text content does not equal -1 (meaning the text content matches bc -1 means it doesn't match)
+    if(item.toLowerCase().indexOf(text) !== -1){
+      // console.log(item);
+      // Then we want to show 
+      task.style.display = 'block';
+    } else {
+      task.style.display = 'none';
+    }
+  });
 }
