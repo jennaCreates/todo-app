@@ -4,6 +4,7 @@ const filterInput = document.querySelector('#filter');
 const clearTasks = document.querySelector('.clear-tasks');
 const unorderedList = document.querySelector('.collection');
 const clearAllTask = document.querySelector('.collection-item');
+const deleteOneItem = document.querySelectorAll('.delete-item');
 
 let task;
 
@@ -12,6 +13,7 @@ listenforEvents();
 function listenforEvents(){
   addTaskBtn.addEventListener('click', addTaskValue);
   clearTasks.addEventListener('click', clearAllTaskAtOnce);
+  unorderedList.addEventListener('click', removeTask);
 }
 
 function addTaskValue(e){
@@ -22,6 +24,7 @@ function addTaskValue(e){
 
   task = inputField.value;
   console.log(task);
+  inputField.value = '';
   // Make a list item out of that input
   let listItem;
   let clearBtn;
@@ -56,3 +59,14 @@ function clearAllTaskAtOnce(){
 
 clearAllTaskAtOnce();
 
+
+function removeTask(e){
+  // if the e.target.parentElement (the a tag contains the class delete item (which it does))
+  if(e.target.parentElement.classList.contains('delete-item')){
+    // console.log(e.target.parentElement);
+    // Then we want to remove that parent element ( In this case is the unordered list )
+    e.target.parentElement.parentElement.remove();
+    // console.log(e.target.parentElement.parentElement);
+  } 
+  
+}
